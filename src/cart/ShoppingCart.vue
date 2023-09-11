@@ -11,18 +11,16 @@
         </ProductInfo>
       </li>
     </ul>
-    <div v-if="cartStore.cart.length > 0" class="total">Total: {{ toCurrency(cartTotal) }}</div>
+    <div v-if="cartStore.cart.length > 0" class="total">Total: {{ toCurrency(cartStore.cartTotal) }}</div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { toCurrency } from '@/shared/formatters'
 import ProductInfo from '@/catalog/product-info/ProductInfo.vue'
 import { useCartStore } from '../stores/cart'
 
 const cartStore = useCartStore()
-const cartTotal = ref(0)
 
 function removeFromCart(product) {
   cartStore.cart = cartStore.cart.filter((p) => p !== product)
