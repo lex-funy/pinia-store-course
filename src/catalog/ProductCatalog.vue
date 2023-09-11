@@ -18,8 +18,11 @@ import { useCartStore } from '../stores/cart'
 const cartStore = useCartStore()
 
 function addToCart(product) {
-  cartStore.cart.push({ ...product })
-  console.log(cartStore.cart.length)
+  // you can use patch to update multiple properties at once
+  // this only updates the values you pass in
+  cartStore.$patch((state) => {
+    state.cart.push({ ...product })
+  })
 }
 </script>
 
