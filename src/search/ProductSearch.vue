@@ -35,6 +35,7 @@ import ProductInfo from '@/catalog/product-info/ProductInfo.vue'
 import useSearch from './useSearch'
 import useFilters from './useFilters'
 import usePagination from './usePagination'
+import { useCartStore } from '../stores/cart'
 
 const searchTerm = ref('')
 const { searchResults } = useSearch(searchTerm)
@@ -66,6 +67,12 @@ function getClass(category) {
 }
 
 const resultCount = computed(() => filteredResults.value.length)
+
+const cartStore = useCartStore()
+const addToCart = (product) => {
+  cartStore.cart.push({ ...product })
+  console.log(cartStore.cart.length)
+}
 </script>
 
 <style scoped>
