@@ -1,4 +1,4 @@
-import { defineStore, storeToRefs } from "pinia"
+import { acceptHMRUpdate, defineStore, storeToRefs } from "pinia"
 import { computed, ref } from "vue"
 import { useProductStore } from "./product"
 
@@ -34,3 +34,9 @@ export const useCartStore = defineStore('cart', () => {
         removeFromCart,
     }
 })
+
+// Use this to enable hot module replacement
+// This is only supported by Vite
+if (import.meta.hot) {
+    import.meta.hot.accept(acceptHMRUpdate(useCartStore, import.meta.hot))
+}
