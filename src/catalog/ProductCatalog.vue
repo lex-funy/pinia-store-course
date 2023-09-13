@@ -15,18 +15,12 @@ import ProductInfo from './product-info/ProductInfo.vue'
 import { useCartStore } from '../stores/cart'
 import { useProductStore } from '../stores/product'
 
-const cartStore = useCartStore()
 const productStore = useProductStore()
 
 productStore.getProductsAsync()
 
-function addToCart(product) {
-  // you can use patch to update multiple properties at once
-  // this only updates the values you pass in
-  cartStore.$patch((state) => {
-    state.cart.push({ ...product })
-  })
-}
+const { addToCart } = useCartStore()
+
 </script>
 
 <style scoped>

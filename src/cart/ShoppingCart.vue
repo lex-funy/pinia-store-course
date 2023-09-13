@@ -22,12 +22,10 @@ import { useCartStore } from '../stores/cart'
 import { storeToRefs } from 'pinia'
 
 // We have now descructured the cart and cartTotal into refs
-let { cart, cartTotal } = storeToRefs(useCartStore())
-
-function removeFromCart(product) {
-  // Because we are using a ref, we now have to use .value to access the value
-  cart.value = cart.value.filter((p) => p !== product)
-}
+// storeToRefs should only be used to destructured the state and computed properties
+let cartStore = useCartStore()
+let { cart, cartTotal } = storeToRefs(cartStore)
+let { removeFromCart } = cartStore
 </script>
 
 <style scoped>
