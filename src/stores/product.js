@@ -4,6 +4,7 @@ import { ref } from "vue"
 
 export const useProductStore = defineStore('products', () => {
     const products = ref([])
+    const productsLoading = ref(false)
 
     const getProductsAsync = async () => {
         const res = await fetch('/api/products')
@@ -13,6 +14,7 @@ export const useProductStore = defineStore('products', () => {
     return {
         products,
         getProductsAsync,
+        productsLoading,
     }
 })
 
